@@ -1,4 +1,4 @@
-package scraper.client;/*
+/*
  * Copyright 2019 igur.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@ package scraper.client;/*
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+package scraper.client;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicLong;
 

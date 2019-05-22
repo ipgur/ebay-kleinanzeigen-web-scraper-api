@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-import org.jetbrains.annotations.NotNull;
-import scraper.client.RequestService;
 import scraper.client.RequestServiceClient;
 import scraper.model.Product;
 import scraper.model.ResultPage;
@@ -36,11 +34,6 @@ public class Application {
                     {"maxPrice", "200"}
             }).collect(Collectors.toMap(data -> data[0], data -> data[1]))).subscribe(Application::printResultPage);
         }
-
-
-
-
-
     }
 
     private static void printResultPage(ResultPage resultPage) {
