@@ -15,17 +15,11 @@
  */
 package scraper.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import pl.droidsonroids.jspoon.annotation.Selector;
+public class Constants {
+    private Constants() {
+        throw new AssertionError("no instances allowed");
+    }
 
-@NoArgsConstructor
-@Data
-public class Product {
-    @Selector(".aditem-main > .text-module-begin > a") private String title;
-    @Selector(".aditem-addon") private String addedOn;
-    @Selector(".aditem-details > strong") private String price;
-    @Selector(value = ".aditem-main > .text-module-begin > a", attr = "href",
-            converter = PrefixHrefClassConverter.class) private String link;
+    public static final String BASE_URL = "www.ebay-kleinzeigen.de";
+    public static final String HREF_ATTR = "href";
 }
-

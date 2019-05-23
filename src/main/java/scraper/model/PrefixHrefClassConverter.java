@@ -15,17 +15,13 @@
  */
 package scraper.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.jsoup.nodes.Element;
+import pl.droidsonroids.jspoon.ElementConverter;
 import pl.droidsonroids.jspoon.annotation.Selector;
 
-@NoArgsConstructor
-@Data
-public class Product {
-    @Selector(".aditem-main > .text-module-begin > a") private String title;
-    @Selector(".aditem-addon") private String addedOn;
-    @Selector(".aditem-details > strong") private String price;
-    @Selector(value = ".aditem-main > .text-module-begin > a", attr = "href",
-            converter = PrefixHrefClassConverter.class) private String link;
+public class PrefixHrefClassConverter implements ElementConverter<String> {
+    @Override
+    public String convert(Element element, Selector selector) {
+        return Constants.BASE_URL + element.attr(Constants.HREF_ATTR);
+    }
 }
-
