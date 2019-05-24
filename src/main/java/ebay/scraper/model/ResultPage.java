@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package scraper.model;
+package ebay.scraper.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

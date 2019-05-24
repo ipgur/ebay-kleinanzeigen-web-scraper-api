@@ -1,4 +1,4 @@
-/*
+package ebay;/*
  * Copyright 2019 igur.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,13 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package scraper.model;
 
-public class Constants {
-    private Constants() {
-        throw new AssertionError("no instances allowed");
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Application {
+
+    private final static ObjectMapper objectMapper = new ObjectMapper();
+
+    public static void main(final String [] args) {
+        SpringApplication.run(Application.class, args);
     }
-
-    public static final String BASE_URL = "www.ebay-kleinzeigen.de";
-    public static final String HREF_ATTR = "href";
 }

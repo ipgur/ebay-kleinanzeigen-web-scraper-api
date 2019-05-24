@@ -2,7 +2,7 @@ version: 2.1
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
 
-    working_directory: ~/ebay-kleinanzeigen-web-scraper # directory where steps will run
+    working_directory: ~/ebay-kleinanzeigen-web-ebay.scraper # directory where steps will run
 
     docker: # run the steps with Docker
       - image: circleci/openjdk:11-jdk-browsers # ...with this image as the primary container; this is where all `steps` will run
@@ -13,14 +13,14 @@ jobs: # a collection of steps
 
       - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
           # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
-          key: ebay-kleinanzeigen-web-scraper-{{ checksum "pom.xml" }}
+          key: ebay-kleinanzeigen-web-ebay.scraper-{{ checksum "pom.xml" }}
 
       - run: mvn dependency:go-offline # gets the project dependencies
 
       - save_cache: # saves the project dependencies
           paths:
             - ~/.m2
-          key: ebay-kleinanzeigen-web-scraper-{{ checksum "pom.xml" }}
+          key: ebay-kleinanzeigen-web-ebay.scraper-{{ checksum "pom.xml" }}
 
       - run: mvn package # run the actual tests
 
@@ -34,5 +34,5 @@ jobs: # a collection of steps
 
       - store_artifacts: # store the uberjar as an artifact
           # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: target/ebay-kleinanzeigen-web-scraper-1.0-SNAPSHOT.jar
+          path: target/ebay-kleinanzeigen-web-ebay.scraper-1.0-SNAPSHOT.jar
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples

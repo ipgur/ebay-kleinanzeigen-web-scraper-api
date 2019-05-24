@@ -1,4 +1,4 @@
-ebay-kleinanzeigen.de web scraper
+ebay-kleinanzeigen.de web ebay.scraper
 
 Name     | Status |
 -------- | ------ |

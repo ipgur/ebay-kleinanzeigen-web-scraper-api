@@ -13,34 +13,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package scraper.client;
+package ebay.scraper.client;
 
 import io.reactivex.Single;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import pl.droidsonroids.retrofit2.JspoonConverterFactory;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import scraper.model.ResultPage;
+import ebay.scraper.model.ResultPage;
 
+import java.io.IOException;
 import java.util.Map;
 
-public class RequestServiceClient implements AutoCloseable{
+@Configuration
+public class RetrofitClient {
 
-    private final Retrofit retrofit;
-    private final RequestService requestService;
-    private final OkHttpClient okHttpClient;
+    @Autowired
+    OkHttpClient httpClient;
 
-    public RequestServiceClient() {
+    @Autowired
+    Retrofit retrofit;
+
+    @Autowired
+    RequestService requestService;
+
+    @Bean
+    OkHttpClient providesHTTPClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        okHttpClient = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-        retrofit = createRetrofit(okHttpClient);
-        requestService = retrofit.create(RequestService.class);
+        return new OkHttpClient.Builder().addInterceptor(interceptor).build();
     }
 
-
-    private Retrofit createRetrofit(OkHttpClient httpClient) {
+    @Bean
+    Retrofit providesRetrofit() {
         return new Retrofit.Builder()
                 .baseUrl("http://www.ebay-kleinanzeigen.de/")
                 .client(httpClient)
@@ -49,15 +58,12 @@ public class RequestServiceClient implements AutoCloseable{
                 .build();
     }
 
-
-    public Single<ResultPage> execute(Map<String, String> parameters) {
-        return requestService.getResultPage(parameters);
+    @Bean
+    RequestService providesRequestService() {
+        return retrofit.create(RequestService.class);
     }
 
-    @Override
-    public void close() {
-        System.out.println("Shutting down the executor service of the http client");
-        okHttpClient.dispatcher().executorService().shutdown();
-        okHttpClient.connectionPool().evictAll();
+    public ResultPage query(Map<String, String> parameters) throws IOException {
+        return requestService.getResultPage(parameters).execute().body();
     }
 }

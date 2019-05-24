@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package scraper.client;
-
+package ebay.scraper.client;
 
 import io.reactivex.Single;
+import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
-import scraper.model.ResultPage;
+import ebay.scraper.model.ResultPage;
 
 import java.util.Map;
 
@@ -31,5 +31,8 @@ public interface RequestService {
                                      @Query("radius") int radius, @Query("locationStr") String location);
 
     @GET("s-suchanfrage.html?sortingField=SORTING_DATE&action=find")
-    Single<ResultPage> getResultPage(@QueryMap Map<String, String> options);
+    Single<ResultPage> getSingleResultPage(@QueryMap Map<String, String> options);
+
+    @GET("s-suchanfrage.html?sortingField=SORTING_DATE&action=find")
+    Call<ResultPage> getResultPage(@QueryMap Map<String, String> options);
 }
