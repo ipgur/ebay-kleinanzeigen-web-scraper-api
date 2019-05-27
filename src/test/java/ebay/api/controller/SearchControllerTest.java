@@ -74,7 +74,6 @@ public class SearchControllerTest {
 
         given(requestService.getResultPage(map)).willReturn(Calls.response(Response.success(resultPage)));
 
-
         mvc.perform(get("/search?keywords=iphone&locationStr=darmstadt&radius=10&maxPrice=90&minPrice=50")
                 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(status().isOk())

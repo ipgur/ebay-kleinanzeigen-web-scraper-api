@@ -33,6 +33,12 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/*Constants.*</exclude>
+                                <exclude>**/*Application.*</exclude>
+                            </excludes>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -53,6 +59,7 @@
         <jackson.version>2.9.9</jackson.version>
         <mockito.vesion>1.10.19</mockito.vesion>
         <spring.boot.version>2.1.3.RELEASE</spring.boot.version>
+        <mockwebserver.version>2.7.5</mockwebserver.version>
     </properties>
 
     <dependencies>
@@ -117,6 +124,13 @@
             <groupId>com.squareup.retrofit2</groupId>
             <artifactId>converter-gson</artifactId>
             <version>${retrofit2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.squareup.okhttp</groupId>
+            <artifactId>mockwebserver</artifactId>
+            <version>${mockwebserver.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>

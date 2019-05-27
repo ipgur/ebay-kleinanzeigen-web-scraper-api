@@ -15,20 +15,20 @@
  */
 package ebay.scraper.client;
 
-import io.reactivex.Single;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.droidsonroids.retrofit2.JspoonConverterFactory;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.Result;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import ebay.scraper.model.ResultPage;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Map;
 
@@ -52,9 +52,10 @@ public class RetrofitClient {
     }
 
     @Bean
-    Retrofit providesRetrofit() {
+    Retrofit providesRetrofit(@Value("${ebay.scrape.url:http://ebay-kleinanzeigen.de/}") String ebayScrapeUrl) {
+        System.out.println("ebayScrapeUrl" + ebayScrapeUrl);
         return new Retrofit.Builder()
-                .baseUrl("http://www.ebay-kleinanzeigen.de/")
+                .baseUrl(ebayScrapeUrl)
                 .client(httpClient)
                 .addConverterFactory(JspoonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
