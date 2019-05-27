@@ -13,5 +13,6 @@ http://127.0.0.1:8080/search?keywords=iphone+se&locationStr=darmstadt&radius=100
 
 Name     | Status |
 -------- | ------ |
-Build    | [![CircleCI](https://circleci.com/gh/ipgur/ebay-kleinanzeigen-web-scraper-api.svg?style=svg)](https://circleci.com/gh/ipgur/ebay-kleinanzeigen-web-scraper) |
+Build    | [![CircleCI](https://circleci.com/gh/ipgur/ebay-kleinanzeigen-web-scraper-api.svg?style=svg)](https://circleci.com/gh/ipgur/ebay-kleinanzeigen-web-scraper-api) |
+Coverage | [![codecov](https://codecov.io/gh/ipgur/ebay-kleinanzeigen-web-scraper-api/branch/master/graph/badge.svg)](https://codecov.io/gh/ipgur/ebay-kleinanzeigen-web-scraper-api) |
 BetterCode    | [![BCH compliance](https://bettercodehub.com/edge/badge/ipgur/ebay-kleinanzeigen-web-scraper-api?branch=master)](https://bettercodehub.com/)|
