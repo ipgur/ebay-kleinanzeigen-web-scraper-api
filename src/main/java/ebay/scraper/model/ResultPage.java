@@ -15,6 +15,8 @@
  */
 package ebay.scraper.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.droidsonroids.jspoon.annotation.Selector;
@@ -22,7 +24,9 @@ import pl.droidsonroids.jspoon.annotation.Selector;
 import java.util.List;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
+@Builder
 public class ResultPage {
     @Selector(".aditem") private List<Product> products;
 }

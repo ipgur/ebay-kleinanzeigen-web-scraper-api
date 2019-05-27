@@ -22,7 +22,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.droidsonroids.retrofit2.JspoonConverterFactory;
+import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.Result;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import ebay.scraper.model.ResultPage;
 
@@ -64,6 +67,8 @@ public class RetrofitClient {
     }
 
     public ResultPage query(Map<String, String> parameters) throws IOException {
-        return requestService.getResultPage(parameters).execute().body();
+        Call<ResultPage> resultPageCall = requestService.getResultPage(parameters);
+        Response<ResultPage> res = resultPageCall.execute();
+        return res.body();
     }
 }

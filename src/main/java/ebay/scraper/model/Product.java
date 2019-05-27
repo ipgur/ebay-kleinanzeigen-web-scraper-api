@@ -15,12 +15,16 @@
  */
 package ebay.scraper.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.droidsonroids.jspoon.annotation.Selector;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
+@Builder
 public class Product {
     @Selector(".aditem-main > .text-module-begin > a") private String title;
     @Selector(".aditem-addon") private String addedOn;
