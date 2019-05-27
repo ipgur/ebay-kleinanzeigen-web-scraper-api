@@ -1,6 +1,6 @@
-Ebay doesn't offer a free API for ebay-kleinanzeigen.de.
+Ebay doesn't offer a free search API in front of ebay-kleinanzeigen.de.
 
-This repo builds a small spring-based API in front of ebay-kleinanzeigen.de which internally scrapes ebay-kleinanzeigen.de 
+This repo builds a small spring-based search API which internally scrapes the website 
 using Retrofit2 and jspoon
 
 ```
