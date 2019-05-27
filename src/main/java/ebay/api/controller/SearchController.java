@@ -28,7 +28,7 @@ import java.util.AbstractMap;
 import java.util.Map;
 
 @RestController
-public class Search {
+public class SearchController {
 
     @Autowired
     RetrofitClient retrofitClient;
