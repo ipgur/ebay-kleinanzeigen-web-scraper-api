@@ -19,6 +19,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.droidsonroids.retrofit2.JspoonConverterFactory;
@@ -28,7 +29,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import ebay.scraper.model.ResultPage;
 
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Map;
 
@@ -36,13 +36,13 @@ import java.util.Map;
 public class RetrofitClient {
 
     @Autowired
-    OkHttpClient httpClient;
+    private OkHttpClient httpClient;
 
     @Autowired
-    Retrofit retrofit;
+    private Retrofit retrofit;
 
     @Autowired
-    RequestService requestService;
+    private RequestService requestService;
 
     @Bean
     OkHttpClient providesHTTPClient() {
@@ -53,7 +53,6 @@ public class RetrofitClient {
 
     @Bean
     Retrofit providesRetrofit(@Value("${ebay.scrape.url:http://ebay-kleinanzeigen.de/}") String ebayScrapeUrl) {
-        System.out.println("ebayScrapeUrl" + ebayScrapeUrl);
         return new Retrofit.Builder()
                 .baseUrl(ebayScrapeUrl)
                 .client(httpClient)

@@ -31,7 +31,7 @@ import java.util.Map;
 public class SearchController {
 
     @Autowired
-    RetrofitClient retrofitClient;
+    private RetrofitClient retrofitClient;
 
     @GetMapping(value = "/search",
                 params = { "keywords", "locationStr", "radius", "minPrice", "maxPrice" },
