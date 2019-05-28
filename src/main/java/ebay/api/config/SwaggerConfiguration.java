@@ -40,6 +40,7 @@ public class SwaggerConfiguration {
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(Predicates.not(PathSelectors.regex("/error"))) // Exclude Spring error controllers
+                .paths(Predicates.not(PathSelectors.regex("/"))) // Exclude root controller - it just redirects to swagger ui
                 .build();
     }
 }
