@@ -19,9 +19,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import pl.droidsonroids.retrofit2.JspoonConverterFactory;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -36,6 +37,9 @@ import java.util.Map;
 public class RetrofitClient {
 
     @Autowired
+    private ApplicationContext applicationContext;
+
+    @Autowired
     private OkHttpClient httpClient;
 
     @Autowired
@@ -43,6 +47,11 @@ public class RetrofitClient {
 
     @Autowired
     private RequestService requestService;
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 
     @Bean
     OkHttpClient providesHTTPClient() {

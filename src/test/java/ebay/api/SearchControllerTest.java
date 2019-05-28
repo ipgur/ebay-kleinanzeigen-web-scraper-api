@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ebay.api.controller;
+package ebay.api;
 
+import ebay.api.controller.SearchController;
 import ebay.scraper.client.RequestService;
 import ebay.scraper.client.RetrofitClient;
 import ebay.scraper.model.Product;
@@ -57,13 +58,13 @@ public class SearchControllerTest {
 
     @Test
     public void test() throws Exception {
-        Map<String, String> map = Map.ofEntries(
+        Map<String, String> map = Stream.of(
                 new AbstractMap.SimpleEntry<>("keywords", "iphone"),
                 new AbstractMap.SimpleEntry<>("locationStr", "darmstadt"),
                 new AbstractMap.SimpleEntry<>("radius", "10"),
                 new AbstractMap.SimpleEntry<>("minPrice", "50"),
                 new AbstractMap.SimpleEntry<>("maxPrice", "90")
-        );
+        ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         List<Product> products = Stream.of(
                 Product.builder().title("mocked iphone 8").build(),

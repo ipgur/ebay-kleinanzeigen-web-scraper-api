@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.util.AbstractMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 public class SearchController {
@@ -42,13 +44,13 @@ public class SearchController {
                            @RequestParam("minPrice") String minPrice,
                            @RequestParam("maxPrice") String maxPrice) throws IOException {
 
-        Map<String, String> map = Map.ofEntries(
+        Map<String, String> map = Stream.of(
                 new AbstractMap.SimpleEntry<>("keywords", keywords),
                 new AbstractMap.SimpleEntry<>("locationStr", locationStr),
                 new AbstractMap.SimpleEntry<>("radius", radius),
                 new AbstractMap.SimpleEntry<>("minPrice", minPrice),
                 new AbstractMap.SimpleEntry<>("maxPrice", maxPrice)
-        );
+        ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         return retrofitClient.query(map);
     }
