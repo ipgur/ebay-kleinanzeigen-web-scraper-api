@@ -75,7 +75,7 @@
         <droidsonroids.retrofit2.version>1.3.2</droidsonroids.retrofit2.version>
         <okhttp3.version>3.12.1</okhttp3.version>
         <reactivex.version>1.3.8</reactivex.version>
-        <jackson.version>2.9.9</jackson.version>
+        <jackson.version>2.9.10.4</jackson.version>
         <mockito.vesion>1.10.19</mockito.vesion>
         <spring.boot.version>2.1.3.RELEASE</spring.boot.version>
         <mockwebserver.version>2.7.5</mockwebserver.version>
